@@ -1,0 +1,11 @@
+
+
+<h1>This is a secure messenger service</h1>
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+<form action="{% url 'messenger:submit' %}" method="post">
+    {% csrf_token %}
+    Recipient Email: <input type="email" name="recipient" maxlength=256 required><br>
+    Encryption Key: <input type="text" name="key" maxlength=10 pattern="[a-zA-Z0-9]{*}" required><br>
+    Message: <br><input type="text" name="msg" maxlength=10000 required>
+    <input type="submit" value="Submit" />
+</form>
