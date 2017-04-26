@@ -7,4 +7,12 @@ def index(request):
     return render(request, "messenger/index.html")
     
 def submit(request):
+    recipient = request.POST.get("recipient")
+    msg = request.POST.get("msg")
+    m = Message(encryptedText = msg, destination = recipient)
+    m.save()
+    
     return render(request, "messenger/submit.html")
+
+def msgDisplay(request, msg_id):
+    return render(request, "messenger/display.html")

@@ -6,7 +6,7 @@ from django.db import models
 
 class Message(models.Model):
     encryptedText = models.CharField(max_length = 10000)
-    encryptionKey = models.CharField(max_length = 10)
+    #encryptionKey = models.CharField(max_length = 10)
     destination = models.EmailField(max_length = 256)
     
     def __str__(self):
