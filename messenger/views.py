@@ -15,4 +15,7 @@ def submit(request):
     return render(request, "messenger/submit.html")
 
 def msgDisplay(request, msg_id):
-    return render(request, "messenger/display.html")
+    message = get_object_or_404(Message, pk=msg_id)
+    content = message.encryptedText
+    message.delete()
+    return render(request, "messenger/display.html", {'content' : content})
