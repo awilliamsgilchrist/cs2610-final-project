@@ -10,5 +10,5 @@ class Message(models.Model):
     destination = models.EmailField(max_length = 256)
     
     def __str__(self):
-        return self.destination
+        return "Message to " + self.destination
     
