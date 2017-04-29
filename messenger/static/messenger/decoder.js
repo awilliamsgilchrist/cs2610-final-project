@@ -21,7 +21,7 @@
                         var exclusiveChecker = true;
                         for(var k = 0; k < checkedInput.length; k++)
                         {
-                            if(input[i] === checkedInput[k]);
+                            if(input[i] === checkedInput[k])
                             {
                                 exclusiveChecker = false;
                                 break;
@@ -50,15 +50,14 @@
         }
         
         return checkedInput;
-    }
+    };
     
-    //Sanitizes a message and a key, then uses the key to create an alternative alphabet and replaces all the characters with their alternative character
-    var encode = function(message, key)
+    var decode = function(message, key)
     {
-        var checkedMessage = inputChecker(message, INPUT_CHECKER);
         var checkedKey = inputChecker(key, ALPHABET, true);
         var cipherAlphabet = [];
-        var cipheredMessage = "";
+        var decodedMessage = "";
+        
         for(var i = 0; i < checkedKey.length; i++)
         {
             cipherAlphabet.push(checkedKey[i]);
@@ -82,25 +81,32 @@
             }
         }
         
-        for(var i = 0; i < checkedMessage.length; i++)
+        for(var i = 0; i < message.length; i++)
         {
-            for(var j = 0; j < ALPHABET.length; j++)
+            var checker = false;
+            for(var j = 0; j < cipherAlphabet.length; j++)
             {
-                if(checkedMessage[i] === ALPHABET[j])
+                if(message[i] === cipherAlphabet[j])
                 {
-                    cipheredMessage += cipherAlphabet[j];
+                    checker = true;
+                    decodedMessage += ALPHABET[j];
                     break;
                 }
             }
+            
+            if(!checker)
+            {
+                decodedMessage += message[i];
+            }
         }
-        
-        return cipheredMessage;
-    }
+    };
     
     var btnHandler = function()
     {
-        var messageField = document.querySelector("form");
-        messageField.querySelector(".msg").value = encode(messageField.querySelector(".msg").value, messageField.querySelector(".key").value);
-    }
+        var messageField = document.querySelector("pre").textContent;
+        messageField = decode(messageField, document.querySelector("input").value);
+    };
     
-    document.querySelector("#submit").addEventListener("click", btnHandler());
+    
+    
+    document.querySelector("button").addEventListener("click", btnHandler());
