@@ -59,7 +59,6 @@
             }
         }
         
-        console.log(checkedKey);
         
         for(var i = 0; i < checkedKey.length; i++)
         {

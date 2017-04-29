@@ -33,9 +33,29 @@
     
     var decode = function(message, key)
     {
-        var checkedKey = inputChecker(key, ALPHABET, true);
+        var sanKey = inputChecker(key, ALPHABET);
         var cipherAlphabet = [];
         var decodedMessage = "";
+        
+        var checkedKey = "";
+        
+        for(var i = 0; i < sanKey.length; i++)
+        {
+            var checker = false;
+            for(var j = 0; j < checkedKey.length; j++)
+            {
+                if(sanKey[i] === checkedKey[j])
+                {
+                    checker = true;
+                    break;
+                }
+            }
+            
+            if(!checker)
+            {
+                checkedKey += sanKey[i];
+            }
+        }
         
         for(var i = 0; i < checkedKey.length; i++)
         {
@@ -78,14 +98,16 @@
                 decodedMessage += message[i];
             }
         }
+        
+        return decodedMessage;
     };
     
     var btnHandler = function()
     {
-        var messageField = document.querySelector("pre").textContent;
-        messageField = decode(messageField, document.querySelector("input").value);
+        var messageField = document.querySelector("pre");
+        messageField.textContent = decode(messageField.textContent, document.querySelector("input").value);
     };
     
     
     
-    document.querySelector("button").addEventListener("click", btnHandler());
+    document.querySelector("button").addEventListener("click", btnHandler);
