@@ -102,6 +102,19 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+# Host for sending e-mail.
+EMAIL_HOST = 'smtp.mail.yahoo.com'
+
+# Port for sending e-mail.
+EMAIL_PORT = 465
+
+# Optional SMTP authentication information for EMAIL_HOST.
+EMAIL_HOST_USER = 'djangosecretmessenger@yahoo.com'
+EMAIL_HOST_PASSWORD = 'ancientmariner'
+EMAIL_USE_TLS = True
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/

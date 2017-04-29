@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from django.core.mail import send_mail
 
 from models import Message
 
@@ -11,6 +12,11 @@ def submit(request):
     msg = request.POST.get("msg")
     m = Message(encryptedText = msg, destination = recipient)
     m.save()
+    send_mail("DO NOT REPLY, VERY SECRET MESSAGE",
+    "You have been sent a secret message. You may view the message once before it deletes itself. Be certain you know the decryption key befor viewing.\nMessage may be viewed at: https://django-final-awilliamsgilchrist.c9users.io/" + str(m.id),
+    "djangosecretmessenger@yahoo.com",
+    [m.destination]
+    )
     
     return render(request, "messenger/submit.html")
 
