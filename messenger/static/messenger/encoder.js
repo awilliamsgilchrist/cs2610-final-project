@@ -111,4 +111,4 @@
         messageField.querySelector(".msg").value = encode(messageField.querySelector(".msg").value, messageField.querySelector(".key").value);
     }
     
-    document.getElementById("submitTest").addEventListener("click", btnHandler);
+    document.getElementById("submit").addEventListener("click", btnHandler);
