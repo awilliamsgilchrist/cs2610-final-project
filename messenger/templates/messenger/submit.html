@@ -1,3 +1,5 @@
+{% load staticfiles %}
+<link type="text/css" rel="stylesheet" href="{% static 'messenger/style.css' %}">
 
-
-<h1>Form submitted</h1>
+<h1 class = "info">Message Sent</h1>
+<p class="info">Message may be viewed <a href="https://django-final-awilliamsgilchrist.c9users.io/{{ message.id }}">here</a>.<br>WARNING: The message will delete itself after viewing. Send the address below to someone else if you wish them to be able to access it<br>https://django-final-awilliamsgilchrist.c9users.io/{{ message.id }}</p>

@@ -1,7 +1,7 @@
 {% load staticfiles %}
-
-<h1>Message</h1>
-<pre>{{ content }}</pre>
+<link type="text/css" rel="stylesheet" href="{% static 'messenger/style.css' %}">
+<h1 class="info">Message</h1>
+<pre class="info">{{ content }}</pre>
 <input type="text" name="key"/><br>
 <button type="button">Decode</button>
 <script src="{% static 'messenger/decoder.js' %}" type="text/javascript"></script>
